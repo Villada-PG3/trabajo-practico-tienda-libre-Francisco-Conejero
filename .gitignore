@@ -1,0 +1,18 @@
+# Base de datos
+db.sqlite3
+
+# Entorno virtual
+.venv/
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+
+# Variables de entorno
+.env
+
+# VS Code
+.vscode/
+
+# Archivos de logs
+*.log
