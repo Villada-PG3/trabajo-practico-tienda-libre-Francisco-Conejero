@@ -1,21 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Acerca de mí</title>
-</head>
-<body>
-    <h1>Acerca de mí</h1>
+{% extends "base.html" %}
 
-    <h2>Francisco Conejero</h2>
+{% block title %}
+Acerca de mí - Tienda Libre
+{% endblock %}
 
-    <p>
-        Soy estudiante y desarrollador en formación.
-        Me interesa la programación y el desarrollo de aplicaciones web.
-    </p>
+{% block content %}
 
-    <p>
-        Actualmente estoy aprendiendo Python, Django, HTML, CSS y bases de datos.
-    </p>
-</body>
-</html>
+<div class="card shadow">
+    <div class="card-body">
+
+        <h1 class="card-title">
+            Acerca de mí
+        </h1>
+
+        <p class="card-text">
+            Soy el creador de Tienda Libre.
+        </p>
+
+        <p class="card-text">
+            Este proyecto está desarrollado con Django y Bootstrap.
+        </p>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,20 +1,8 @@
-from django.shortcuts import render
-from .models import Producto
+from django.urls import path
+from . import views
 
-
-def home(request):
-    return render(request, "tiendalibre/home.html")
-
-
-def acerca_de_mi(request):
-    return render(request, "tiendalibre/acerca-de-mi.html")
-
-
-def productos(request):
-    lista_productos = Producto.objects.all()
-
-    contexto = {
-        "productos": lista_productos
-    }
-
-    return render(request, "productos.html", contexto)
+urlpatterns = [
+    path("", views.home, name="home"),
+    path("acerca-de-mi/", views.acerca_de_mi, name="acerca_de_mi"),
+    path("productos/", views.productos, name="productos"),
+]
