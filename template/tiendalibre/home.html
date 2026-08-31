@@ -1,27 +1,146 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-Inicio - Tienda Libre
+    Inicio | Tienda Libre
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'tiendalibre/css/home.css' %}">
 {% endblock %}
 
 {% block content %}
 
-<div class="p-5 mb-4 bg-light rounded-3">
-    <div class="container-fluid py-5">
+<div class="container py-5">
 
-        <h1 class="display-5 fw-bold">
-            Bienvenido a Tienda Libre 🛒
+    <!-- TÍTULO -->
+    <div class="text-center home-hero">
+
+        <h1 class="display-4 fw-bold home-title">
+            Hola mundo 👋
         </h1>
 
-        <p class="col-md-8 fs-4">
-            Encontrá los mejores productos en nuestra tienda.
-        </p>
+        <h2 class="mt-3">
+            ¡Bienvenido a Tienda Libre!
+        </h2>
 
-        <a href="#" class="btn btn-primary btn-lg">
-            Ver productos
-        </a>
+        {% if usuario_logueado %}
+            <p class="lead mt-3 text-success">
+                Bienvenido, {{ nombre_usuario|title }}
+            </p>
+        {% else %}
+            <p class="lead mt-3 text-muted">
+                Bienvenido, visitante
+            </p>
+        {% endif %}
 
     </div>
+
+
+    <!-- TÍTULO DE PRODUCTOS -->
+
+    <h2 class="mt-5 mb-4">
+        {{ titulo|upper }}
+    </h2>
+
+    <p>
+        Tenemos {{ productos_destacados|length }} productos destacados.
+    </p>
+
+
+    <!-- PRODUCTOS -->
+
+    <div class="row g-4">
+
+        {% for producto in productos_destacados %}
+
+        <div class="col-12 col-md-6 col-lg-4">
+
+            <div class="card h-100 shadow-sm">
+
+                <div class="card-body">
+
+                    <!-- Filtro upper -->
+                    <h5 class="card-title">
+                        {{ producto.nombre|upper }}
+                    </h5>
+
+
+                    <!-- Filtro title -->
+                    <p class="text-secondary">
+                        {{ producto.descripcion|title }}
+                    </p>
+
+
+                    <!-- Filtro floatformat -->
+                    <p class="fw-bold">
+                        Precio: ${{ producto.precio|floatformat:2 }}
+                    </p>
+                    
+                                        <!-- Filtro Deafult del precio -->
+                    <p class="fw-bold">
+                        Precio: ${{ producto.precio|default:"Sin Precio" }}
+                    </p>
+
+
+                    <!-- CONDICIONAL DE STOCK -->
+
+                    {% if producto.stock == 0 %}
+
+                        <p class="text-danger fw-bold">
+                            Stock agotado
+                        </p>
+
+                    {% elif producto.stock <= 5 %}
+
+                        <p class="text-danger fw-bold">
+                            Stock bajo: {{ producto.stock }}
+                        </p>
+
+                    {% elif producto.stock <= 15 %}
+
+                        <p class="text-warning fw-bold">
+                            Stock medio: {{ producto.stock }}
+                        </p>
+
+                    {% else %}
+
+                        <p class="text-success fw-bold">
+                            Stock disponible: {{ producto.stock }}
+                        </p>
+
+                    {% endif %}
+
+
+                    <!-- DEFAULT -->
+
+                    <p>
+                        Marca:
+                        {{ producto.marca|default:"Sin marca" }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <!-- SI LA LISTA ESTÁ VACÍA -->
+
+        <div class="col-12">
+
+            <div class="alert alert-info">
+                No hay productos disponibles en este momento.
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
 </div>
 
 {% endblock %}
