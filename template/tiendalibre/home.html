@@ -74,14 +74,9 @@
 
                     <!-- Filtro floatformat -->
                     <p class="fw-bold">
-                        Precio: ${{ producto.precio|floatformat:2 }}
+                        Precio: ${{ producto.precio|floatformat:2|default:"Sin Precio" }}
                     </p>
                     
-                                        <!-- Filtro Deafult del precio -->
-                    <p class="fw-bold">
-                        Precio: ${{ producto.precio|default:"Sin Precio" }}
-                    </p>
-
 
                     <!-- CONDICIONAL DE STOCK -->
 
