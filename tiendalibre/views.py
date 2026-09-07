@@ -11,25 +11,30 @@ def home(request):
                 "nombre": "Auriculares Bluetooth",
                 "precio": 15999,
                 "stock": 32,
-                "descripcion": "Auriculares inalámbricos con excelente calidad de sonido."
+                "descripcion": "Auriculares inalámbricos con excelente calidad de sonido.",
+                "marca": "Sony",
+            
             },
             {
                 "nombre": "Mouse inalámbrico",
                 "precio": 8499,
                 "stock": 18,
-                "descripcion": "Mouse cómodo y práctico para uso diario."
+                "descripcion": "Mouse cómodo y práctico para uso diario.",
+                "marca": "Logitech"
             },
             {
                 "nombre": "Teclado mecánico",
                 "precio": 24999,
                 "stock": 7,
-                "descripcion": "Teclado mecánico ideal para estudiar y jugar."
+                "descripcion": "Teclado mecánico ideal para estudiar y jugar.",
+                "marca": "Corsair"
             },
             {
                 "nombre": "Webcam HD",
                 "precio": 12999,
                 "stock": 4,
-                "descripcion": "Webcam HD para videollamadas."
+                "descripcion": "Webcam HD para videollamadas.",
+                "marca": "Logitech"
             },
             {
                 "nombre": "Pendrive 64GB",
