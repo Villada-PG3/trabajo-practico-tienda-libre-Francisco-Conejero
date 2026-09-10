@@ -36,50 +36,49 @@
 
     </div>
 
-
     <!-- TÍTULO DE PRODUCTOS -->
-
     <h2 class="mt-5 mb-4">
         {{ titulo|upper }}
     </h2>
 
     <p>
-        Tenemos {{ productos_destacados|length }} productos destacados.
+        Tenemos {{ productos|length }} productos destacados.
     </p>
 
-
     <!-- PRODUCTOS -->
-
     <div class="row g-4">
 
-        {% for producto in productos_destacados %}
+        {% for producto in productos %}
 
         <div class="col-12 col-md-6 col-lg-4">
 
             <div class="card h-100 shadow-sm">
 
+                {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}"
+                         class="card-img-top"
+                         alt="{{ producto.nombre }}">
+                {% else %}
+                    <img src="{% static 'tiendalibre/img/default-product-image.jpg' %}"
+                         class="card-img-top"
+                         alt="{{ producto.nombre }}">
+                {% endif %}
+
                 <div class="card-body">
 
-                    <!-- Filtro upper -->
                     <h5 class="card-title">
                         {{ producto.nombre|upper }}
                     </h5>
 
-
-                    <!-- Filtro title -->
                     <p class="text-secondary">
                         {{ producto.descripcion|title }}
                     </p>
 
-
-                    <!-- Filtro floatformat -->
                     <p class="fw-bold">
                         Precio: ${{ producto.precio|floatformat:2|default:"Sin Precio" }}
                     </p>
-                    
 
-                    <!-- CONDICIONAL DE STOCK -->
-
+                    <!-- STOCK -->
                     {% if producto.stock == 0 %}
 
                         <p class="text-danger fw-bold">
@@ -106,9 +105,7 @@
 
                     {% endif %}
 
-
-                    <!-- DEFAULT -->
-
+                    <!-- MARCA -->
                     <p>
                         Marca:
                         {{ producto.marca|default:"Sin marca" }}
@@ -121,8 +118,6 @@
         </div>
 
         {% empty %}
-
-        <!-- SI LA LISTA ESTÁ VACÍA -->
 
         <div class="col-12">
 

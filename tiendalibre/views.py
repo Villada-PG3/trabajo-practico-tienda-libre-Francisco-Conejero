@@ -1,57 +1,22 @@
 from django.shortcuts import render
 
+from tiendalibre.models import Producto
+
 
 def home(request):
+    productos = Producto.objects.filter(activo=True).order_by('-fecha_creacion')[:3]
+
     contexto = {
-        "titulo": "Ofertas de la semana",
-        "usuario_logueado": True,
-        "nombre_usuario": "Francisco",
-        "productos_destacados": [
-            {
-                "nombre": "Auriculares Bluetooth",
-                "precio": 15999,
-                "stock": 32,
-                "descripcion": "Auriculares inalámbricos con excelente calidad de sonido.",
-                "marca": "Sony",
-            
-            },
-            {
-                "nombre": "Mouse inalámbrico",
-                "precio": 8499,
-                "stock": 18,
-                "descripcion": "Mouse cómodo y práctico para uso diario.",
-                "marca": "Logitech"
-            },
-            {
-                "nombre": "Teclado mecánico",
-                "precio": 24999,
-                "stock": 7,
-                "descripcion": "Teclado mecánico ideal para estudiar y jugar.",
-                "marca": "Corsair"
-            },
-            {
-                "nombre": "Webcam HD",
-                "precio": 12999,
-                "stock": 4,
-                "descripcion": "Webcam HD para videollamadas.",
-                "marca": "Logitech"
-            },
-            {
-                "nombre": "Pendrive 64GB",
-                "precio": 5999,
-                "stock": 1,
-                "descripcion": "Pendrive de 64GB para guardar tus archivos."
-            },
-            {
-                "nombre": "Hub USB-C",
-                "precio": None,
-                "stock": 0,
-                "descripcion": "Hub USB-C con múltiples conexiones."
-            },
-        ],
+        "productos": productos
     }
 
     return render(request, "tiendalibre/home.html", contexto)
+
+
+def catalogo(request):
+    productos = Producto.objects.filter(activo=True).order_by('fecha_creacion')
+    contexto = {"productos": productos }
+    return render(request, "tiendalibre/catalogo.html", contexto)
 
 
 def acerca_de_mi(request):
