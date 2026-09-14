@@ -36,7 +36,9 @@
                 <div class="card-body d-flex flex-column">
 
                     <h5 class="card-title">
-                        {{ producto.nombre }}
+                        <a href="{% url 'tiendalibre:detalle_producto' producto.pk %}">
+                            {{ producto.nombre }}
+                        </a>
                     </h5>
 
                     <p class="card-text mb-2">
