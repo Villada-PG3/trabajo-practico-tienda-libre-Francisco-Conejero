@@ -1,0 +1,221 @@
+/* =========================================
+   TIENDA LIBRE
+   Diseño inspirado en mates, yerba y naturaleza
+   ========================================= */
+
+body {
+    background-color: #f5f1e8;
+    color: #2f2f2f;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+
+.navbar {
+    background-color: #214d36 !important;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+}
+
+.navbar-brand {
+    color: #f5e6c8 !important;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.navbar .nav-link {
+    color: #ffffff !important;
+    transition: color 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #d9b978 !important;
+}
+
+/* =========================================
+   CONTENIDO
+   ========================================= */
+
+main.container {
+    min-height: 70vh;
+}
+
+main > .container {
+    max-width: 1200px;
+}
+
+/* =========================================
+   TITULOS
+   ========================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: #214d36;
+    font-weight: bold;
+}
+
+h1 {
+    margin-bottom: 25px;
+}
+
+/* =========================================
+   TEXTO DEL CATÁLOGO
+   ========================================= */
+
+main p {
+    color: #555;
+}
+
+/* =========================================
+   TARJETAS DE PRODUCTOS
+   ========================================= */
+
+.card {
+    border: none !important;
+    border-radius: 15px !important;
+    overflow: hidden;
+    background-color: #fffdf8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 9px 22px rgba(0, 0, 0, 0.16) !important;
+}
+
+/* =========================================
+   IMÁGENES DE PRODUCTOS
+   ========================================= */
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+    background-color: #eee7d8;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* =========================================
+   NOMBRE DEL PRODUCTO
+   ========================================= */
+
+.card-title {
+    margin-bottom: 10px;
+}
+
+.card-title a {
+    color: #214d36;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.card-title a:hover {
+    color: #a45c28;
+}
+
+/* =========================================
+   DESCRIPCIÓN
+   ========================================= */
+
+.card-text {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* =========================================
+   PRECIO
+   ========================================= */
+
+.card-text.fw-bold {
+    color: #a45c28 !important;
+    font-size: 1.25rem;
+}
+
+/* =========================================
+   BOTONES
+   ========================================= */
+
+.btn-primary {
+    background-color: #214d36;
+    border-color: #214d36;
+    border-radius: 8px;
+}
+
+.btn-primary:hover {
+    background-color: #163625;
+    border-color: #163625;
+}
+
+.btn-secondary {
+    background-color: #6b6b5e;
+    border-color: #6b6b5e;
+    border-radius: 8px;
+}
+
+.btn-secondary:hover {
+    background-color: #505047;
+    border-color: #505047;
+}
+
+/* =========================================
+   DETALLE DEL PRODUCTO
+   ========================================= */
+
+.card-body img.img-fluid {
+    max-width: 400px;
+    max-height: 450px;
+    object-fit: contain;
+    border-radius: 12px;
+    background-color: #eee7d8;
+    padding: 10px;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+footer {
+    background-color: #214d36;
+    color: white;
+    padding: 20px;
+    margin-top: 50px !important;
+}
+
+footer p {
+    color: white;
+    margin: 0;
+}
+
+/* =========================================
+   ENLACES
+   ========================================= */
+
+a {
+    text-decoration: none;
+}
+
+/* =========================================
+   CELULAR
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .card-img-top {
+        height: 200px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
