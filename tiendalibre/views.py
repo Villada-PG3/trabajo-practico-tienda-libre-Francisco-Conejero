@@ -1,24 +1,35 @@
-from django.shortcuts import render
-from django.shortcuts import render, get_object_or_404
+
+from django.views.generic import TemplateView, ListView, DetailView
 from tiendalibre.models import Producto
 
 
-def home(request):
-    productos = Producto.objects.filter(activo=True).order_by('-fecha_creacion')[:3]
+class HomeView(TemplateView):
+    template_name = "tiendalibre/home.html"
 
-    contexto = {
-        "productos": productos
-    }
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
 
-    return render(request, "tiendalibre/home.html", contexto)
+        contexto["productos"] = Producto.objects.filter(
+            activo=True
+        ).order_by("-fecha_creacion")[:3]
+
+        return contexto
 
 
-def catalogo(request):
-    productos = Producto.objects.filter(activo=True).order_by('fecha_creacion')
-    contexto = {"productos": productos }
-    return render(request, "tiendalibre/catalogo.html", contexto)
+class CatalogoView(ListView):
+    model = Producto
+    template_name = "tiendalibre/catalogo.html"
+    context_object_name = "productos"
+
+    def get_queryset(self):
+        return Producto.objects.filter(
+            activo=True
+        ).order_by("fecha_creacion")
+
 
 def detalle_producto(request, pk):
+    from django.shortcuts import get_object_or_404, render
+
     producto = get_object_or_404(Producto, pk=pk)
 
     return render(
@@ -29,4 +40,6 @@ def detalle_producto(request, pk):
 
 
 def acerca_de_mi(request):
-    return render(request, "tiendalibre/acerca-de-mi.html")
+    return TemplateView.as_view(
+        template_name="tiendalibre/acerca-de-mi.html"
+    )(request)
