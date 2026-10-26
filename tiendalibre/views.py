@@ -1,8 +1,9 @@
 
 from django.db.models import Q
 from django.views.generic import TemplateView, ListView, DetailView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from tiendalibre.models import Producto, Categoria
+from .forms import ContactoForm
 
 
 class HomeView(TemplateView):
@@ -73,3 +74,25 @@ class DetalleProductoView(DetailView):
 
 class AcercaDeMiView(TemplateView):
     template_name = "tiendalibre/acerca-de-mi.html"
+
+
+def contacto(request):
+    enviado = False
+
+    if request.method == "POST":
+        form = ContactoForm(request.POST)
+
+        if form.is_valid():
+            enviado = True
+            form = ContactoForm()
+    else:
+        form = ContactoForm()
+
+    return render(
+        request,
+        "tiendalibre/contacto.html",
+        {
+            "form": form,
+            "enviado": enviado,
+        }
+    )

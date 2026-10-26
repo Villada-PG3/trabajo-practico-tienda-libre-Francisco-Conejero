@@ -47,9 +47,10 @@
                         Categorías
                     </a>
 
-                    <ul class="dropdown-menu dropdown-menu-end"
-                        aria-labelledby="categoriasDropdown">
-
+                    <ul
+                        class="dropdown-menu dropdown-menu-end"
+                        aria-labelledby="categoriasDropdown"
+                    >
                         {% for categoria in categorias_menu %}
                             <li>
                                 <a
@@ -66,13 +67,19 @@
                                 </span>
                             </li>
                         {% endfor %}
-
                     </ul>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'tiendalibre:acerca_de_mi' %}">
                         Acerca de mí
+                    </a>
+                </li>
+
+                <!-- Enlace al formulario de contacto -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tiendalibre:contacto' %}">
+                        Contacto
                     </a>
                 </li>
 
