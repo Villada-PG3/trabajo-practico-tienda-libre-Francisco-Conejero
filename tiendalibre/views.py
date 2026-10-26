@@ -20,6 +20,7 @@ class CatalogoView(ListView):
     model = Producto
     template_name = "tiendalibre/catalogo.html"
     context_object_name = "productos"
+    paginate_by = 6
 
     def get_queryset(self):
         return Producto.objects.filter(
@@ -27,19 +28,14 @@ class CatalogoView(ListView):
         ).order_by("fecha_creacion")
 
 
-def detalle_producto(request, pk):
-    from django.shortcuts import get_object_or_404, render
+class DetalleProductoView(DetailView):
+    model = Producto
+    template_name = "tiendalibre/detalle.html"
+    context_object_name = "producto"
 
-    producto = get_object_or_404(Producto, pk=pk)
-
-    return render(
-        request,
-        "tiendalibre/detalle.html",
-        {"producto": producto}
-    )
+    def get_queryset(self):
+        return Producto.objects.filter(activo=True)
 
 
-def acerca_de_mi(request):
-    return TemplateView.as_view(
-        template_name="tiendalibre/acerca-de-mi.html"
-    )(request)
+class AcercaDeMiView(TemplateView):
+    template_name = "tiendalibre/acerca-de-mi.html"
