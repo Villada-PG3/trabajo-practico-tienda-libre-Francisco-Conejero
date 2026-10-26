@@ -12,6 +12,7 @@
 
 {% block content %}
 <div class="container py-5">
+
     <h1 class="mb-4">
         Catálogo de productos
     </h1>
@@ -19,6 +20,31 @@
     <p>
         Tenemos {{ paginator.count }} productos disponibles.
     </p>
+
+    <!-- BUSCADOR -->
+    <form method="GET" class="mb-4">
+        <div class="input-group">
+            <input
+                type="text"
+                name="q"
+                class="form-control"
+                placeholder="Buscar por nombre, marca o descripción..."
+                value="{{ request.GET.q }}"
+                aria-label="Buscar productos"
+            >
+
+            <button type="submit" class="btn btn-primary">
+                Buscar
+            </button>
+
+            {% if request.GET.q %}
+                <a href="{% url 'tiendalibre:catalogo' %}"
+                   class="btn btn-outline-secondary">
+                    Limpiar
+                </a>
+            {% endif %}
+        </div>
+    </form>
 
     <div class="row g-4">
 
@@ -28,9 +54,17 @@
             <div class="card h-100 shadow-sm">
 
                 {% if producto.imagen %}
-                    <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                    <img
+                        src="{{ producto.imagen.url }}"
+                        class="card-img-top"
+                        alt="{{ producto.nombre }}"
+                    >
                 {% else %}
-                    <img src="{% static 'tiendalibre/img/default-product-image.jpg' %}" class="card-img-top" alt="{{ producto.nombre }}">
+                    <img
+                        src="{% static 'tiendalibre/img/default-product-image.jpg' %}"
+                        class="card-img-top"
+                        alt="{{ producto.nombre }}"
+                    >
                 {% endif %}
 
                 <div class="card-body d-flex flex-column">
@@ -54,7 +88,9 @@
         </div>
 
         {% empty %}
-            <p>No hay productos disponibles.</p>
+            <div class="col-12">
+                <p>No se encontraron productos.</p>
+            </div>
         {% endfor %}
 
     </div>
@@ -66,7 +102,7 @@
             {% if page_obj.has_previous %}
                 <li class="page-item">
                     <a class="page-link"
-                       href="?page={{ page_obj.previous_page_number }}">
+                       href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">
                         Anterior
                     </a>
                 </li>
@@ -75,7 +111,7 @@
             {% for numero in paginator.page_range %}
                 <li class="page-item {% if numero == page_obj.number %}active{% endif %}">
                     <a class="page-link"
-                       href="?page={{ numero }}">
+                       href="?page={{ numero }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">
                         {{ numero }}
                     </a>
                 </li>
@@ -84,7 +120,7 @@
             {% if page_obj.has_next %}
                 <li class="page-item">
                     <a class="page-link"
-                       href="?page={{ page_obj.next_page_number }}">
+                       href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">
                         Siguiente
                     </a>
                 </li>
