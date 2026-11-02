@@ -1,4 +1,6 @@
+
 from django.db import models
+from django.urls import reverse
 
 
 class Categoria(models.Model):
@@ -38,3 +40,9 @@ class Producto(models.Model):
 
     def __str__(self):
         return f'{self.nombre} - {self.marca} - ${self.precio} - Stock: {self.stock}'
+
+    def get_absolute_url(self):
+        return reverse(
+            "tiendalibre:detalle_producto",
+            kwargs={"pk": self.pk}
+        )

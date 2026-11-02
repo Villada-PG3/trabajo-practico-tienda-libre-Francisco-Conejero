@@ -1,7 +1,13 @@
 
 from django.db.models import Q
-from django.views.generic import TemplateView, ListView, DetailView
-from django.shortcuts import get_object_or_404, render, redirect
+from django.views.generic import (
+    TemplateView,
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView
+)
+from django.shortcuts import get_object_or_404, render
 
 from tiendalibre.models import Producto, Categoria
 from .forms import ContactoForm, ProductoForm
@@ -101,20 +107,13 @@ def contacto(request):
     )
 
 
-def producto_nuevo(request):
+class ProductoCreateView(CreateView):
+    model = Producto
+    form_class = ProductoForm
+    template_name = "tiendalibre/producto_form.html"
 
-    if request.method == "POST":
-        form = ProductoForm(request.POST, request.FILES)
 
-        if form.is_valid():
-            form.save()
-            return redirect("tiendalibre:catalogo")
-
-    else:
-        form = ProductoForm()
-
-    return render(
-        request,
-        "tiendalibre/producto_form.html",
-        {"form": form}
-    )
+class ProductoUpdateView(UpdateView):
+    model = Producto
+    form_class = ProductoForm
+    template_name = "tiendalibre/producto_form.html"
