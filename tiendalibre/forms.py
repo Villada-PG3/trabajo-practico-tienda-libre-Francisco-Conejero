@@ -1,5 +1,6 @@
 
 from django import forms
+from .models import Producto
 
 
 class ContactoForm(forms.Form):
@@ -14,13 +15,12 @@ class ContactoForm(forms.Form):
         required=True
     )
 
-
     telefono = forms.CharField(
         label="Teléfono",
         max_length=20,
         required=False
-    ) 
-    
+    )
+
     asunto = forms.CharField(
         label="Asunto",
         max_length=150,
@@ -32,3 +32,18 @@ class ContactoForm(forms.Form):
         widget=forms.Textarea,
         required=True
     )
+
+
+class ProductoForm(forms.ModelForm):
+
+    class Meta:
+        model = Producto
+        fields = [
+            'nombre',
+            'descripcion',
+            'precio',
+            'stock',
+            'marca',
+            'categoria',
+            'imagen',
+        ]

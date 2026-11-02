@@ -17,6 +17,14 @@
         Catálogo de productos
     </h1>
 
+    <!-- BOTÓN AGREGAR PRODUCTO -->
+    <div class="mb-4">
+        <a href="{% url 'tiendalibre:producto_nuevo' %}"
+           class="btn btn-success">
+            ➕ Agregar producto
+        </a>
+    </div>
+
     <p>
         Tenemos {{ paginator.count }} productos disponibles.
     </p>

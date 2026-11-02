@@ -1,0 +1,53 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Agregar producto | Tienda Libre{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8 col-lg-6">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">🛒 Agregar producto</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        {{ form.as_p }}
+
+                        <div class="d-flex justify-content-between mt-4">
+
+                            <a href="{% url 'tiendalibre:catalogo' %}"
+                               class="btn btn-secondary">
+                                Volver
+                            </a>
+
+                            <button type="submit" class="btn btn-success">
+                                Guardar producto
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
